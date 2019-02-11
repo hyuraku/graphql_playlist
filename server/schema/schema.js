@@ -30,7 +30,13 @@ const BookType = new GraphQLObjectType({
   fields:() =>({
     id:{type: GraphQLID},
     name:{type: GraphQLString},
-    genre:{type:GraphQLString}
+    genre:{type:GraphQLString},
+    author:{
+      type: AuthorType,
+      resolve(parent,args){
+        return _.find(authors,{id: parent.authorId});
+      }
+    }
   })
 });
 
@@ -51,7 +57,6 @@ const RootQuery = new GraphQLObjectType({
       args:{id:{type:GraphQLID}},
       resolve(parent,args){
         // code to get data from db /other spurxe
-        console.log(typeof(args.id));
         return _.find(books, {id: args.id});
       }
     },
