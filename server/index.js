@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const app = express()
 
-mongoose.connect(process.env.mongoURL);
+mongoose.connect(process.env.mongoURL,{useNewUrlParser: true});
 mongoose.connection.once('open',()=>{
   console.log('connect to db');
 })
