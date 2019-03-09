@@ -8,7 +8,8 @@ class AddBook extends Component {
     this.state = {
       name: '',
       genre: '',
-      authorId: ''
+      authorId: '',
+      publish_year: ''
     };
   }
   displayAuthors(){
@@ -27,7 +28,8 @@ class AddBook extends Component {
       variables: {
         name: this.state.name,
         genre: this.state.genre,
-        authorId: this.state.authorId
+        authorId: this.state.authorId,
+        publish_year: this.state.publish_year
       },
       refetchQueries: [{query: getBooksQuery}]
     });
@@ -44,6 +46,10 @@ class AddBook extends Component {
         <input type="text" onChange={(e)=> this.setState({ genre: e.target.value })}/>
       </div>
       <div className="field">
+        <label>Publish_year:</label>
+        <input type="number" onChange={(e)=> this.setState({ publish_year: e.target.value })}/>
+      </div>
+      <div className="field">
         <label>Author:</label>
         <select onChange={(e)=> this.setState({ authorId: e.target.value })}>
           <option>Select author</option>
@@ -51,7 +57,6 @@ class AddBook extends Component {
         </select>
       </div>
       <button>+</button>
-
     </form>
     );
   }
