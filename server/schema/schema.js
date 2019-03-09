@@ -18,8 +18,8 @@ const BookType = new GraphQLObjectType({
   fields:() =>({
     id:{type: GraphQLID},
     name:{type: GraphQLString},
-    genre:{type:GraphQLString},
-    publish_year:{type:GraphQLInt},
+    genre:{type: GraphQLString},
+    publish_year:{type:GraphQLString},
     author:{
       type: AuthorType,
       resolve(parent,args){
@@ -34,7 +34,7 @@ const AuthorType = new GraphQLObjectType({
   fields:() =>({
     id:{type: GraphQLID},
     name:{type: GraphQLString},
-    age:{type:GraphQLInt},
+    age:{type: GraphQLInt},
     books:{
       type:new GraphQLList(BookType),
       resolve(parent,args){
@@ -99,7 +99,7 @@ const Mutation = new GraphQLObjectType({
         name: {type: new GraphQLNonNull(GraphQLString)},
         genre: {type: new GraphQLNonNull(GraphQLString)},
         authorId: {type: new GraphQLNonNull(GraphQLID)},
-        publish_year:{type: new GraphQLNonNull(GraphQLInt)}
+        publish_year:{type: new GraphQLNonNull(GraphQLString)}
       },
       resolve(parent, args){
         let book = new Book({
