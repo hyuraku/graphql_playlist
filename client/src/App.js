@@ -20,8 +20,8 @@ class App extends Component {
           <Header/>
           <div className="ph3 pv1 background-gray">
             <Switch>
-              <Route exact="exact" path="/"/>
-              <Route exact="exact" path="/author"/>
+              <Route exact path="/"/>
+              <Route exact path="/author"/>
             </Switch>
           </div>
         </div>

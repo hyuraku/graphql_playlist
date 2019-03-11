@@ -29,7 +29,7 @@ class AddBook extends Component {
         name: this.state.name,
         genre: this.state.genre,
         authorId: this.state.authorId,
-        publish_year: this.state.publish_year
+        publish_year: parseInt(this.state.publish_year)
       },
       refetchQueries: [
         {
