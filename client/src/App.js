@@ -6,6 +6,7 @@ import {BrowserRouter} from 'react-router-dom'
 
 // components
 import BookList from './component/BookList';
+import AuthorList from './component/AuthorList';
 import AddBook from './component/AddBook';
 import Header from './component/Header'
 
@@ -25,8 +26,6 @@ class App extends Component {
             </Switch>
           </div>
         </div>
-
-
       </ApolloProvider>
     </BrowserRouter>);
   }
@@ -41,8 +40,9 @@ const Main = () =>(
 );
 
 const Author = () =>(
-  <div id="main">
+  <div id="author">
     <h1>Auhtor List</h1>
+    <AuthorList/>
   </div>
 );
 
