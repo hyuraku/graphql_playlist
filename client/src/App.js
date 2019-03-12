@@ -20,20 +20,30 @@ class App extends Component {
           <Header/>
           <div className="ph3 pv1 background-gray">
             <Switch>
-              <Route exact path="/"/>
-              <Route exact path="/author"/>
+              <Route exact path="/" component={Main}/>
+              <Route exact path="/author" component={Author}/>
             </Switch>
           </div>
         </div>
 
-        <div id="main">
-          <h1>Reading List</h1>
-          <BookList/>
-          <AddBook/>
-        </div>
+
       </ApolloProvider>
     </BrowserRouter>);
   }
 }
+
+const Main = () =>(
+  <div id="main">
+    <h1>Reading List</h1>
+    <BookList/>
+    <AddBook/>
+  </div>
+);
+
+const Author = () =>(
+  <div id="main">
+    <h1>Auhtor List</h1>
+  </div>
+);
 
 export default App;
