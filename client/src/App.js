@@ -8,6 +8,7 @@ import {BrowserRouter} from 'react-router-dom'
 import BookList from './component/BookList';
 import AuthorList from './component/AuthorList';
 import AddBook from './component/AddBook';
+import AddAuthor from './component/AddAuthor';
 import Header from './component/Header'
 
 // apollo client setup
@@ -43,6 +44,7 @@ const Author = () =>(
   <div id="author">
     <h1>Auhtor List</h1>
     <AuthorList/>
+    <AddAuthor/>
   </div>
 );
 
