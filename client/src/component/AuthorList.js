@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {graphql} from 'react-apollo';
 import {getAuthorsQuery} from '../queries/queries'
 
+import AuthorDetails from './AuthorDetails'
+
 class AuthorList extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +26,7 @@ class AuthorList extends Component {
       <ul id="author-list">
         <li>Author name</li>
         {this.displayAuthors()}
+        <AuthorDetails authorId={this.state.selected}/>
       </ul>
     </div>);
   }
