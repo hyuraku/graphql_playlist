@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {graphql, compose} from 'react-apollo';
 import {getAuthorsQuery, addBookMutation, getBooksQuery} from '../queries/queries'
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 class AddBook extends Component {
   constructor(props) {
@@ -9,8 +10,15 @@ class AddBook extends Component {
       name: '',
       genre: '',
       authorId: '',
-      publish_year: ''
+      publish_year: '',
+      modal: false
     };
+    this.toggle = this.toggle.bind(this);
+  }
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
   }
   displayAuthors() {
     let data = this.props.getAuthorsQuery;
@@ -39,28 +47,40 @@ class AddBook extends Component {
     });
   }
   render() {
-    return (<form id="add-book" onSubmit={this.submitForm.bind(this)}>
-      <div className="field">
-        <label>Book name:</label>
-        <input type="text" onChange={(e) => this.setState({name: e.target.value})}/>
-      </div>
-      <div className="field">
-        <label>Genre:</label>
-        <input type="text" onChange={(e) => this.setState({genre: e.target.value})}/>
-      </div>
-      <div className="field">
-        <label>Publish_year:</label>
-        <input type="number" onChange={(e) => this.setState({publish_year: e.target.value})}/>
-      </div>
-      <div className="field">
-        <label>Author:</label>
-        <select onChange={(e) => this.setState({authorId: e.target.value})}>
-          <option>Select author</option>
-          {this.displayAuthors()}
-        </select>
-      </div>
-      <button>+</button>
-    </form>);
+    return (<div>
+      <Button color="danger" onClick={this.toggle}>Add a new book</Button>
+      <Modal isOpen={this.state.modal}>
+        <form id="add-book" onSubmit={this.submitForm.bind(this)}>
+          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalBody>
+            <div className="field">
+              <label>Book name:</label>
+              <input type="text" onChange={(e) => this.setState({name: e.target.value})}/>
+            </div>
+            <div className="field">
+              <label>Genre:</label>
+              <input type="text" onChange={(e) => this.setState({genre: e.target.value})}/>
+            </div>
+            <div className="field">
+              <label>Publish_year:</label>
+              <input type="number" onChange={(e) => this.setState({publish_year: e.target.value})}/>
+            </div>
+            <div className="field">
+              <label>Author:</label>
+              <select onChange={(e) => this.setState({authorId: e.target.value})}>
+                <option>Select author</option>
+                {this.displayAuthors()}
+              </select>
+            </div>
+            <button>+</button>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle}>Do Something</Button>
+            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+          </ModalFooter>
+        </form>
+      </Modal>
+    </div>);
   }
 }
 
