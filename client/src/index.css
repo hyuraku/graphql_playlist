@@ -55,7 +55,7 @@ code {
     color: #880E4F;
 }
 
-form{
+/* form{
     background: #fff;
     padding: 20px;
     position: fixed;
@@ -92,7 +92,7 @@ form button{
     position: absolute;
     bottom: 10px;
     left: 10px;
-}
+} */
 
 #book-details{
     position: fixed;
