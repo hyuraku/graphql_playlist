@@ -25,6 +25,12 @@ const BookType = new GraphQLObjectType({
       resolve(parent,args){
         return Author.findById(parent.authorId);
       }
+    },
+    publisher:{
+      type: PublisherType,
+      resolve(parent,args){
+        return Publisher.findById(parent.publisherId)
+      }
     }
   })
 });
@@ -35,6 +41,22 @@ const AuthorType = new GraphQLObjectType({
     id:{type: GraphQLID},
     name:{type: GraphQLString},
     age:{type: GraphQLInt},
+    books:{
+      type:new GraphQLList(BookType),
+      resolve(parent,args){
+        return Book.find({authorId: parent.id})
+      }
+    }
+  })
+});
+
+const PublisherType = new GraphQLObjectType({
+  name: 'Publisher',
+  fields:() =>({
+    id:{type: GraphQLID},
+    name:{type: GraphQLString},
+    area:{type: GraphQLString},
+    established:{type: GraphQLInt},
     books:{
       type:new GraphQLList(BookType),
       resolve(parent,args){
