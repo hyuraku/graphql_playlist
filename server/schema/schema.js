@@ -83,6 +83,13 @@ const RootQuery = new GraphQLObjectType({
         return Author.findById(args.id)
       }
     },
+    publisher:{
+      type: PublisherType,
+      args:{id:{type:GraphQLID}},
+      resolve(parent,args){
+        return Publisher.findById(args.id)
+      }
+    },
     books:{
       type: new GraphQLList(BookType),
       resolve(parent,args){
@@ -94,7 +101,13 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent,args){
         return Author.find({})
       }
-    }
+    },
+    publishers:{
+      type: new GraphQLList(PublisherType),
+      resolve(parent,args){
+        return Publisher.find({})
+      }
+    },
   }
 });
 
@@ -121,16 +134,34 @@ const Mutation = new GraphQLObjectType({
         name: {type: new GraphQLNonNull(GraphQLString)},
         genre: {type: new GraphQLNonNull(GraphQLString)},
         authorId: {type: new GraphQLNonNull(GraphQLID)},
-        publish_year:{type: new GraphQLNonNull(GraphQLInt)}
+        publish_year:{type: new GraphQLNonNull(GraphQLInt)},
+        publisherId: {type: new GraphQLNonNull(GraphQLID)},
       },
       resolve(parent, args){
         let book = new Book({
           name: args.name,
           genre: args.genre,
           authorId: args.authorId,
-          publish_year: args.publish_year
+          publish_year: args.publish_year,
+          publisherId: args.publisherId,
         });
         return book.save();
+      }
+    },
+    addPublisher:{
+      type: PublisherType,
+      args:{
+        name: {type: new GraphQLNonNull(GraphQLString)},
+        area: {type: new GraphQLNonNull(GraphQLString)},
+        established: {type: new GraphQLNonNull(GraphQLInt)},
+      },
+      resolve(parent, args){
+        let publisher = new Publisher({
+          name: args.name,
+          area: args.area,
+          established: args.established,
+        });
+        return publisher.save();
       }
     }
   }
