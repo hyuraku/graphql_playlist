@@ -18,6 +18,11 @@ class Header extends Component {
                 Author
               </Link>
             </li>
+            <li>
+              <Link to="/publisher" className="ml1 no-underline black">
+                Publisher
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

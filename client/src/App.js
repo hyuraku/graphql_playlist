@@ -24,6 +24,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Main}/>
               <Route exact path="/author" component={Author}/>
+              <Route exact path="/publisher" component={Publisher}/>
             </Switch>
           </div>
         </div>
@@ -43,6 +44,14 @@ const Main = () =>(
 const Author = () =>(
   <div id="author">
     <h1>Auhtor List</h1>
+    <AuthorList/>
+    <AddAuthor/>
+  </div>
+);
+
+const Publisher = () =>(
+  <div id="publisher">
+    <h1>Publisher List</h1>
     <AuthorList/>
     <AddAuthor/>
   </div>
